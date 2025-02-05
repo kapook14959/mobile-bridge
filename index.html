@@ -39,10 +39,17 @@
             }
 
             let jsonString = JSON.stringify(data)
+
+            // For iOS
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.navigateToFaceScan) {
                 window.webkit.messageHandlers.navigateToFaceScan.postMessage(jsonString);
             } else {
                 alert('Web cannot send message to mobile!');
+            }
+
+            // For Andriod
+            if (window.navigateToFaceScan) {
+                window.navigateToFaceScan.postMessage(jsonString)
             }
         }
 
@@ -52,10 +59,17 @@
             }
 
             let jsonString = JSON.stringify(data)
+
+            // For iOS
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.navigateToFatcaCRS) {
                 window.webkit.messageHandlers.navigateToFatcaCRS.postMessage(jsonString);
             } else {
                 alert('Web cannot send message to mobile!');
+            }
+            
+            // For Andriod
+            if (window.navigateToFatcaCRS) {
+                window.navigateToFatcaCRS.postMessage(jsonString)
             }
         }
 
@@ -65,10 +79,17 @@
             }
 
             let jsonString = JSON.stringify(data)
+
+            // For iOS
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.navigateToAccountSummary) {
                 window.webkit.messageHandlers.navigateToAccountSummary.postMessage(jsonString);
             } else {
                 alert('Web cannot send message to mobile!');
+            }
+
+            // For Andriod
+            if (window.navigateToAccountSummary) {
+                window.navigateToAccountSummary.postMessage(jsonString)
             }
         }
     </script>
