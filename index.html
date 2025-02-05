@@ -1,27 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Send Message to Mobile</title>
+    <title>Send Mobile Number</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <button onclick="sendMessage()">Send Message to Mobile</button>
+    <!-- HTML !-->
+     <center>
+        <h1> Send Bridge To Mobile Jaaaaa</h1>
+        <div>
+            <button class="button-19" onclick="sendMessageNavigateToFaceScan()">Send Message navigateToFaceScan</button>
+         </div>
+         <br>
+         <div>
+            <button class="button-19" onclick="sendMessage()">Send Message navigateToFatcaCRS</button>
+         </div>
+         <br>
+         <div>
+            <button class="button-19" onclick="sendMessage()">Send Message navigateToAccountSummary</button>
+         </div>
+     </center>
 
     <script>
-        function sendMessage() {
+        function sendMessageNavigateToFaceScan() {
             let data = {
                 feature: "feature",
-                function: "function"
+                function: "function",
+                subFunction: "subFunction",
+                channel: "channel",
+                accountType: "accountType",
+                requestId: "requestId",
+                customsFlag: 1,
+                customsAction: "goToHome"
             }
 
             let jsonString = JSON.stringify(data)
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
-                window.webkit.messageHandlers.mobileBridge.postMessage(jsonString);
+                window.webkit.messageHandlers.navigateToFaceScan.postMessage(jsonString);
+            } else {
+                alert('Web cannot send message to mobile!');
+            }
+        }
+
+        function sendMessageNavigateToFatcaCRS() {
+            let data = {
+                acceptLanguage: "accept-language"
+            }
+
+            let jsonString = JSON.stringify(data)
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
+                window.webkit.messageHandlers.navigateToFatcaCRS.postMessage(jsonString);
+            } else {
+                alert('Web cannot send message to mobile!');
+            }
+        }
+
+        function sendMessageNavigateToAccountSummary() {
+            let data = {
+                requestId: "requestId1234"
+            }
+
+            let jsonString = JSON.stringify(data)
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
+                window.webkit.messageHandlers.navigateToAccountSummary.postMessage(jsonString);
             } else {
                 alert('Web cannot send message to mobile!');
             }
         }
     </script>
 </body>
+
 </html>
