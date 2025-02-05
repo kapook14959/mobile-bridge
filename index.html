@@ -10,8 +10,14 @@
 
     <script>
         function sendMessage() {
+            let data = {
+                feature: "feature",
+                function: "function"
+            }
+
+            let jsonString = JSON.stringify(data)
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
-                window.webkit.messageHandlers.mobileBridge.postMessage({ feature: "feature", function: "function"});
+                window.webkit.messageHandlers.mobileBridge.postMessage(jsonString);
             } else {
                 alert('Web cannot send message to mobile!');
             }
