@@ -48,7 +48,7 @@
             window.AndroidBridge.postMessage(JSON.stringify(message));
 
             // สำหรับ iOS
-            window.webkit.messageHandlers.iOSBridge.postMessage(message);
+            window.webkit.messageHandlers.navigateToFaceScan.postMessage(message);
         }
     </script>
 </body>
