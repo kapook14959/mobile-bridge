@@ -1,29 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Send Message to Mobile</title>
 </head>
-
 <body>
     <button onclick="sendMessage()">Send Message to Mobile</button>
 
     <script>
         function sendMessage() {
             if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
-                window.webkit.messageHandlers.mobileBridge.postMessage({
-                    data: {
-                        function: "function",
-                        feature: "feature"
-                    }
-                });
+                window.webkit.messageHandlers.mobileBridge.postMessage({ feature: "feature", function: "function"});
             } else {
                 alert('Web cannot send message to mobile!');
             }
         }
     </script>
 </body>
-
 </html>
