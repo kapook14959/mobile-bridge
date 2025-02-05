@@ -1,56 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web to Mobile Bridge</title>
+    <title>Send Message to Mobile</title>
 </head>
-
 <body>
-    <h1>Web to Mobile Bridge</h1>
-
-    <button onclick="sendMessage('navigateToFaceScan', {
-        feature: 'face_recognition',
-        function: 'scan',
-        subFunction: 'verify',
-        channel: 'mobile',
-        accountType: 'personal',
-        requestId: '123456',
-        customsFlag: true,
-        customsAction: 'approve'
-    })">Navigate to Face Scan</button>
-
-    <button onclick="sendMessage('navigateToFatcaCRS', {
-        UserId: 'user_98765',
-        ekycMethod: 'OCR',
-        'accept-language': 'en-US',
-        referenceID: 'ref_ABC123',
-        userType: 'individual',
-        funcNm: 'fatca_validation',
-        channel: 'mobile'
-    })">Navigate to FATCA CRS</button>
-
-    <button onclick="sendMessage('navigateToAccountSummary', {
-        requestId: 'req_78910'
-    })">Navigate to Account Summary</button>
+    <button onclick="sendMessage()">Send Message to Mobile</button>
 
     <script>
-        function sendMessage(action, data) {
-            const message = {
-                action: action,
-                data: data
-            };
-            alert("Sending: " + JSON.stringify(message));
-            console.log("Sending message:", message);
-
-            // สำหรับ Android
-            window.AndroidBridge.postMessage(JSON.stringify(message));
-
-            // สำหรับ iOS
-            window.webkit.messageHandlers[action].postMessage(message);
+        function sendMessage() {
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.mobileBridge) {
+                window.webkit.messageHandlers.mobileBridge.postMessage('Hello from web');
+            } else {
+                alert('Web cannot send message to mobile!');
+            }
         }
     </script>
 </body>
-
 </html>
