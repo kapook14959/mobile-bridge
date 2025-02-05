@@ -45,14 +45,10 @@
             console.log("Sending message:", message);
 
             // สำหรับ Android
-            if (window.AndroidBridge && typeof window.AndroidBridge.postMessage === "function") {
-                window.AndroidBridge.postMessage(JSON.stringify(message));
-            }
+            window.AndroidBridge.postMessage(JSON.stringify(message));
 
             // สำหรับ iOS
-            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.iOSBridge) {
-                window.webkit.messageHandlers.iOSBridge.postMessage(message);
-            }
+            window.webkit.messageHandlers.iOSBridge.postMessage(message);
         }
     </script>
 </body>
