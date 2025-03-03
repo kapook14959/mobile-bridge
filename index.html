@@ -23,6 +23,9 @@
          <div>
             <button class="button-19" onclick="sendMessageNavigateToAccountSummary()">Send Message navigateToAccountSummary</button>
          </div>
+         <div>
+            <button class="button-19" onclick="sendMessageJuristicAuthorizeLoanWebView()">Send Message juristicAuthorizeLoanWebView</button>
+         </div>
      </center>
 
     <script>
@@ -90,6 +93,27 @@
             // For Andriod
             if (window.navigateToAccountSummary) {
                 window.navigateToAccountSummary.postMessage(jsonString)
+            }
+        }
+
+        function sendMessageJuristicAuthorizeLoanWebView() {
+            let data = {
+                status: "approved",
+                UUID: "123456"
+            }
+
+            let jsonString = JSON.stringify(data)
+
+            // For iOS
+            if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.juristicAuthorizeLoanWebView) {
+                window.webkit.messageHandlers.juristicAuthorizeLoanWebView.postMessage(jsonString);
+            } else {
+                alert('Web cannot send message to mobile!');
+            }
+
+            // For Andriod
+            if (window.juristicAuthorizeLoanWebView) {
+                window.juristicAuthorizeLoanWebView.postMessage(jsonString)
             }
         }
     </script>
